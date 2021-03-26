@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TopHeadlineService } from './services/top-headline.service';
 
 @Component({
   selector: 'app-top-headline',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopHeadlineComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headlineService: TopHeadlineService) { }
 
   ngOnInit(): void {
+    this.headlineService.getTopHeadlines().subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 }
