@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IArticleWrapper } from 'src/app/shared/interfaces/article-wrapper.interface';
+import { ITopHeadlineRequest } from 'src/app/shared/interfaces/top-headline-request.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,10 +17,14 @@ export class TopHeadlineService {
     this.BASE_URL = environment.BASE_URL;
   }
 
-  getTopHeadlines() {
-    const params = new HttpParams()
+  getTopHeadlines(p: ITopHeadlineRequest) {
+    let params = new HttpParams()
       .set('country', 'us')
       .set('apiKey', this.API_KEY);
+
+    Object.keys(p).forEach(key => {
+      params = params.append(key.toString(), p[key]);
+    });
 
     return this.http.get<IArticleWrapper>(`${this.BASE_URL}top-headlines`, { params });
   }

@@ -22,7 +22,19 @@ const _topHeadlineReducer = createReducer(
     on(TopHeadlineActions.fetchTopHeadlinesFail, (state, action) => ({
         ...state,
         errorMsg: action.errorMsg
-    }))
+    })),
+    on(TopHeadlineActions.addTopHeadlines, (state, action) => {
+        let currentHeadlines = { ...state.topHeadlines }
+        currentHeadlines.status = action.headlinesToAdd.status;
+        currentHeadlines.totalResults = action.headlinesToAdd.totalResults;
+        currentHeadlines.articles = [...currentHeadlines.articles, ...action.headlinesToAdd.articles];
+
+        return {
+            ...state,
+            errorMsg: null,
+            topHeadlines: { ...currentHeadlines }
+        }
+    })
 );
 
 export function topHeadlineReducer(state: State, action: Action) {

@@ -1,19 +1,25 @@
+<p>
+    <mat-toolbar color="primary">
+        <span>News Portal</span>
+    </mat-toolbar>
+</p>
+
 <div class="container">
-    <!-- <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 ml-auto mr-auto" *ngFor="let a of headlineArticles?.articles"
-            style=" margin: 5px;">
-            <app-article-card [article]="a"></app-article-card>
+    <div>
+        <div class="card-columns">
+            <app-article-card *ngFor="let ar of headlineArticles?.articles" [article]="ar"></app-article-card>
         </div>
 
-        <div *ngIf="displayLoader">
-            <mat-spinner style="margin:0 auto;"></mat-spinner>
+        <div *ngIf="!displayLoader" class="row" class="load-more-btn">
+            <div class="col-lg-4 col-sm-6 ml-auto mr-auto">
+                <button [disabled]="disableLoadMoreBtn" mat-raised-button color="primary"
+                    (click)="onLoadMoreButtonClick()">Load more</button>
+            </div>
         </div>
-    </div> -->
-    <div class="card-columns">
-        <app-article-card *ngFor="let a of headlineArticles?.articles" [article]="a"></app-article-card>
+
     </div>
 
-    <div *ngIf="displayLoader">
-        <mat-spinner style="margin:0 auto;"></mat-spinner>
+    <div *ngIf="displayLoader" class="loader-content">
+        <mat-spinner></mat-spinner>
     </div>
 </div>
