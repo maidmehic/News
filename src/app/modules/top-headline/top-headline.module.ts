@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 
 import { TopHeadlineEffects } from './store/top-headline.effects';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MaterialModule } from 'src/app/app.module';
 
 const routes: Routes = [
   {
@@ -19,6 +21,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     EffectsModule.forFeature([TopHeadlineEffects]),
+    SharedModule,
+    MaterialModule
   ]
 })
 export class TopHeadlineModule { }

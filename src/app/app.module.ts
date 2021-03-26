@@ -9,6 +9,21 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as fromApp from '../app/store/app.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+@NgModule({
+  exports: [
+    MatSliderModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatCardModule
+  ],
+})
+export class MaterialModule { }
 
 @NgModule({
   declarations: [
@@ -20,7 +35,9 @@ import * as fromApp from '../app/store/app.reducer';
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot(),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
