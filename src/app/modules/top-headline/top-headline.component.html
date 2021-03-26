@@ -1,3 +1,13 @@
 <div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 ml-auto mr-auto" *ngFor="let a of headlineArticles?.articles"
+            style=" margin: 5px;">
+            <app-article-card [article]="a"></app-article-card>
+        </div>
+
+        <div *ngIf="displayLoader">
+            <mat-spinner style="margin:0 auto;"></mat-spinner>
+        </div>
+    </div>
 
 </div>

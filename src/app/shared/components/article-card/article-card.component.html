@@ -1,1 +1,14 @@
-<p>this is shared card component</p>
+<mat-card class="article-card">
+    <mat-card-header>
+        <mat-card-title>{{article.title}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="article.urlToImage">
+    <mat-card-content>
+        <p>
+            {{article.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>READ FULL ARTICLE</button>
+    </mat-card-actions>
+</mat-card>
