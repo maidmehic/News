@@ -21,7 +21,7 @@ export class TopHeadlineService {
       .set('country', 'us')
       .set('apiKey', this.API_KEY);
 
-    return this.http.get<IArticleWrapper>(`${this.BASE_URL}top-headlines`, { params: params });
+    return this.http.get<IArticleWrapper>(`${this.BASE_URL}top-headlines`, { params });
   }
 
 }

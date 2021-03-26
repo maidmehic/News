@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TopHeadlineService } from './services/top-headline.service';
+import { Store } from '@ngrx/store';
 
+import { AppState } from 'src/app/store/app.reducer';
+import { TopHeadlineService } from './services/top-headline.service';
+import * as TopHeadlineActions from './store/top-headline.actions';
 @Component({
   selector: 'app-top-headline',
   templateUrl: './top-headline.component.html',
@@ -8,17 +11,25 @@ import { TopHeadlineService } from './services/top-headline.service';
 })
 export class TopHeadlineComponent implements OnInit {
 
-  constructor(private headlineService: TopHeadlineService) { }
+  displayLoader: boolean;
+  constructor(private headlineService: TopHeadlineService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.headlineService.getTopHeadlines().subscribe(
+    this.displayLoader = false;
+    this.store.select('topHeadline').subscribe(
       res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
+        if (!res.topHeadlines) {
+          this.fetchTopHeadlines();
+        } else {
+          this.displayLoader = false;
+        }
       }
     )
+  }
+
+  fetchTopHeadlines() {
+    this.displayLoader = true;
+    this.store.dispatch(TopHeadlineActions.fetchTopHeadlines());
   }
 
 }
