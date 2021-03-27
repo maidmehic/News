@@ -4,23 +4,27 @@ import { ArticleCardComponent } from './components/article-card/article-card.com
 import { MaterialModule } from '../app.module';
 import { MdArticleCardComponent } from './components/md-article-card/md-article-card.component';
 import { DropdownDirective } from './directives/dropdown.directive';
-
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ArticleCardComponent,
     MdArticleCardComponent,
-    DropdownDirective
+    DropdownDirective,
+    SearchBarComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [
     ArticleCardComponent,
     MdArticleCardComponent,
-    DropdownDirective
+    DropdownDirective,
+    SearchBarComponent
   ]
 })
 export class SharedModule { }

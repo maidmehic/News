@@ -4,15 +4,7 @@
             <span style="cursor: pointer;" routerLink="/">News Portal</span>
         </div>
         <div class="col-sm-6" style="padding: 0;">
-            <div class="input-group">
-                <input type="text" [(ngModel)]="requestParams.q" class="form-control" placeholder="Search articles..."
-                    aria-label="Search articles..." aria-describedby="basic-addon1" style="border-radius: 30px;">
-                <div class="input-group-append">
-                    <button (click)="onSearchBtnClick()" mat-icon-button>
-                        <mat-icon>search</mat-icon>
-                    </button>
-                </div>
-            </div>
+            <app-search-bar [searchTerm]="requestParams.q" (onSearchEvent)="onSearch($event)"></app-search-bar>
         </div>
     </mat-toolbar>
 </p>

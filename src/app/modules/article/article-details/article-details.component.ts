@@ -18,7 +18,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   selectedArticle: IArticle;
-  searchTerm: string;
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute, private notifService: NotificationService) { }
 
   ngOnInit(): void {
@@ -29,10 +28,10 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     )
   }
 
-  onSearchBtnClick() {
-    if (this.searchTerm) {
+  onSearch(term: string) {
+    if (term) {
       let requestParams: IArticleRequest = {
-        q: this.searchTerm,
+        q: term,
         sortBy: ''
       };
       this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))

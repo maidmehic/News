@@ -40,21 +40,26 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
     this.router.navigate(['article']);
   }
 
-  onSearchBtnClick() {
+  onSearch(term: string) {
+    this.requestParams.q = term;
+    this.searchArticles();
+  }
+
+  onSortOptionChanged(e) {
+    this.requestParams.sortBy = e.value;
+    this.searchArticles();
+  }
+
+  searchArticles() {
     if (this.requestParams.q) {
       let requestParams: IArticleRequest = {
         q: this.requestParams.q,
         sortBy: this.requestParams.sortBy
       };
       this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))
-    } else {
-      this.notifService.openSnackBar("Please enter a search term.", "Dismiss");
     }
-  }
-
-  onSortOptionChanged(e) {
-    this.requestParams.sortBy = e.value;
-    this.onSearchBtnClick();
+    else
+      this.notifService.openSnackBar("Please enter a search term.", "Dismiss");
   }
 
   ngOnDestroy(): void {
