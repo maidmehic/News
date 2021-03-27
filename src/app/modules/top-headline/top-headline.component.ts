@@ -18,6 +18,7 @@ import * as ArticleActions from '../article/store/article.actions';
 export class TopHeadlineComponent implements OnInit, OnDestroy {
   requestParams: ITopHeadlineRequest;
   subscription: Subscription;
+  errorMsg: string;
 
   displayLoader: boolean;
   headlineArticles: IArticleWrapper;
@@ -35,9 +36,10 @@ export class TopHeadlineComponent implements OnInit, OnDestroy {
 
     this.subscription = this.store.select('topHeadline').subscribe( //TODO: implement selectors
       res => {
-        if (!res.topHeadlines && !res.isLoading) {
+        if (!res.topHeadlines && !res.isLoading && !res.errorMsg) {
           this.fetchTopHeadlines();
         } else {
+          this.errorMsg = res.errorMsg;
           this.displayLoader = res.isLoading;
           this.headlineArticles = res.topHeadlines;
           this.requestParams = { ...res.requestParams };

@@ -33,7 +33,8 @@ const _topHeadlineReducer = createReducer(
     on(TopHeadlineActions.fetchTopHeadlinesFail, (state, action) => ({
         ...state,
         errorMsg: action.errorMsg,
-        isLoading: false
+        isLoading: false,
+        topHeadlines: null
     }))
 );
 

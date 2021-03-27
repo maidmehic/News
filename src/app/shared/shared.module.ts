@@ -6,6 +6,7 @@ import { MdArticleCardComponent } from './components/md-article-card/md-article-
 import { DropdownDirective } from './directives/dropdown.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     ArticleCardComponent,
     MdArticleCardComponent,
     DropdownDirective,
-    SearchBarComponent
+    SearchBarComponent,
+    NoDataComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     ArticleCardComponent,
     MdArticleCardComponent,
     DropdownDirective,
-    SearchBarComponent
+    SearchBarComponent,
+    NoDataComponent
   ]
 })
 export class SharedModule { }

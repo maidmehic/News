@@ -1,0 +1,8 @@
+<div>
+    <img src="../../../../assets/program-error.svg">
+    <p *ngIf="isError">An error has occured while processing a request. <span (click)="onTryAgain()">Please try
+            again.</span></p>
+    <p *ngIf="!isError">
+        Sorry, we couldn't find anything.
+    </p>
+</div>

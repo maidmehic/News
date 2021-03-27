@@ -19,6 +19,7 @@ import * as ArticleActions from '../store/article.actions';
 export class ArticleSearchComponent implements OnInit, OnDestroy {
   requestParams: IArticleRequest;
   subscription: Subscription;
+  errorMsg: string;
 
   displayLoader: boolean;
   articles: IArticleWrapper;
@@ -31,6 +32,7 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
         this.displayLoader = res.isLoading;
         this.requestParams = { ...res.requestParams };
         this.articles = res.articles;
+        this.errorMsg = res.errorMsg;
       }
     )
   }
@@ -54,7 +56,7 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
     if (this.requestParams.q) {
       let requestParams: IArticleRequest = {
         q: this.requestParams.q,
-        sortBy: this.requestParams.sortBy
+        sortBy: this.requestParams.sortBy || ''
       };
       this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))
     }

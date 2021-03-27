@@ -42,6 +42,7 @@ const _articleReducer = createReducer(
         ...state,
         isLoading: false,
         errorMsg: action.errorMsg,
+        articles: null
     }))
 );
 

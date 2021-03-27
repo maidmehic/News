@@ -27,6 +27,14 @@
                 (readFullArticleEvent)="onReadFullArticleClick($event)">
             </app-article-card>
         </div>
+
+        <div *ngIf="articles?.totalResults === 0" class="loader-content no-results-msg ">
+            <app-no-data [isError]="false"></app-no-data>
+        </div>
+
+        <div *ngIf="errorMsg" class="loader-content no-results-msg ">
+            <app-no-data [isError]="true" (tryAgainEvent)="searchArticles()"></app-no-data>
+        </div>
     </div>
 
     <ng-template #loaderContent>

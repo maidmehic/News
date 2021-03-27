@@ -19,7 +19,15 @@
             </app-article-card>
         </div>
 
-        <div class="row" class="pag-buttons">
+        <div *ngIf="headlineArticles?.totalResults === 0" class="loader-content no-results-msg ">
+            <app-no-data [isError]="false"></app-no-data>
+        </div>
+
+        <div *ngIf="errorMsg" class="loader-content no-results-msg ">
+            <app-no-data [isError]="true" (tryAgainEvent)="fetchTopHeadlines()"></app-no-data>
+        </div>
+
+        <div class="row" class="pag-buttons" *ngIf="headlineArticles?.totalResults > 0">
             <div class="col" style="display: flex; justify-content: center;">
                 <button *ngIf="requestParams.page > 1" mat-raised-button color="primary"
                     (click)="onPreviousButtonClick()">Previous</button>

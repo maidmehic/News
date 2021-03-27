@@ -12,3 +12,8 @@
     display: flex; 
     justify-content: flex-end;
 }
+
+.no-results-msg {
+    justify-content: center;
+    flex-direction: column;
+}

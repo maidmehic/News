@@ -16,3 +16,8 @@
 .pag-buttons button {
     border-radius: 30px; 
 }
+
+.no-results-msg {
+    justify-content: center;
+    flex-direction: column;
+}
