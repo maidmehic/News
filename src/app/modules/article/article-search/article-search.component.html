@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-6" style="padding: 0;">
             <div class="input-group">
-                <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search articles..."
+                <input type="text" [(ngModel)]="requestParams.q" class="form-control" placeholder="Search articles..."
                     aria-label="Search articles..." aria-describedby="basic-addon1" style="border-radius: 30px;">
                 <div class="input-group-append">
                     <button (click)="onSearchBtnClick()" mat-icon-button>
@@ -18,6 +18,17 @@
 </p>
 
 <div class="container">
+    <div class="sort-content">
+        <mat-form-field appearance="fill">
+            <mat-label>Sort by</mat-label>
+            <mat-select (selectionChange)="onSortOptionChanged($event)">
+                <mat-option *ngFor="let option of articleService.sortOptions" [value]="option.value">
+                    {{option.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
     <div *ngIf="!displayLoader; else loaderContent">
         <div class="card-columns">
             <app-article-card *ngFor="let ar of articles?.articles" [article]="ar"

@@ -32,7 +32,8 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   onSearchBtnClick() {
     if (this.searchTerm) {
       let requestParams: IArticleRequest = {
-        q: this.searchTerm
+        q: this.searchTerm,
+        sortBy: ''
       };
       this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))
       this.router.navigate(["search"], { relativeTo: this.route });

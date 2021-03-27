@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { MaterialModule } from '../app.module';
 import { MdArticleCardComponent } from './components/md-article-card/md-article-card.component';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 
 
 @NgModule({
   declarations: [
     ArticleCardComponent,
-    MdArticleCardComponent
+    MdArticleCardComponent,
+    DropdownDirective
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { MdArticleCardComponent } from './components/md-article-card/md-article-
   ],
   exports: [
     ArticleCardComponent,
-    MdArticleCardComponent
+    MdArticleCardComponent,
+    DropdownDirective
   ]
 })
 export class SharedModule { }

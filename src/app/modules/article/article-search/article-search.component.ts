@@ -6,7 +6,9 @@ import { Subscription } from 'rxjs';
 import { IArticleRequest } from 'src/app/shared/interfaces/article-request.interface';
 import { IArticleWrapper } from 'src/app/shared/interfaces/article-wrapper.interface';
 import { IArticle } from 'src/app/shared/interfaces/article.interface';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { AppState } from 'src/app/store/app.reducer';
+import { ArticleService } from '../services/article.service';
 import * as ArticleActions from '../store/article.actions';
 
 @Component({
@@ -20,9 +22,8 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
 
   displayLoader: boolean;
   articles: IArticleWrapper;
-  searchTerm: string;
 
-  constructor(private store: Store<AppState>, private router: Router) { }
+  constructor(private store: Store<AppState>, private router: Router, public articleService: ArticleService, private notifService: NotificationService) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('article').subscribe(
@@ -30,7 +31,6 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
         this.displayLoader = res.isLoading;
         this.requestParams = { ...res.requestParams };
         this.articles = res.articles;
-        this.searchTerm = this.requestParams.q;
       }
     )
   }
@@ -41,12 +41,20 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
   }
 
   onSearchBtnClick() {
-    if (this.searchTerm) {
+    if (this.requestParams.q) {
       let requestParams: IArticleRequest = {
-        q: this.searchTerm
+        q: this.requestParams.q,
+        sortBy: this.requestParams.sortBy
       };
       this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))
+    } else {
+      this.notifService.openSnackBar("Please enter a search term.", "Dismiss");
     }
+  }
+
+  onSortOptionChanged(e) {
+    this.requestParams.sortBy = e.value;
+    this.onSearchBtnClick();
   }
 
   ngOnDestroy(): void {
