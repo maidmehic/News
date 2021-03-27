@@ -1,0 +1,23 @@
+<mat-card class="article-card">
+    <mat-card-header>
+        <mat-card-title>{{article?.title}}</mat-card-title>
+        <mat-card-subtitle>{{article?.source?.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="article.urlToImage">
+    <mat-card-content>
+        <p>
+            {{article?.description}}
+        </p>
+        <div [innerHTML]="article?.content"> </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="article-footer ">
+            <div>
+                {{article?.publishedAt | date: 'short'}}
+            </div>
+            <div style="margin-left: 10px;">
+                {{article?.author}}
+            </div>
+        </div>
+    </mat-card-actions>
+</mat-card>

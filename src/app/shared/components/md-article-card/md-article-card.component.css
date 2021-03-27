@@ -1,0 +1,10 @@
+.article-card {
+    max-width: 650px;
+}
+
+.article-footer {
+    display: flex; 
+    color: rgba(0,0,0,.54); 
+    font-size: 14px; 
+    justify-content: flex-end;
+}

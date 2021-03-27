@@ -1,1 +1,11 @@
-<p>article-details works!</p>
+<p>
+    <mat-toolbar color="primary">
+        <span>News Portal</span>
+    </mat-toolbar>
+</p>
+
+<div class="container">
+    <div *ngIf="selectedArticle">
+        <app-md-article-card [article]="selectedArticle"></app-md-article-card>
+    </div>
+</div>
