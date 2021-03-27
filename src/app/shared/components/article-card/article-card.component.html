@@ -1,5 +1,7 @@
 <div class="card">
-    <img class="card-img-top" [src]="article.urlToImage" alt="Card image cap">
+    <img *ngIf="displayFallbackImg" class="card-img-top" src="../../../../assets/noImageFound.png">
+    <img *ngIf="!displayFallbackImg" class="card-img-top" [src]="article.urlToImage" (error)="onImageError()"
+        alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{article.title}}</h5>
         <p class="card-text">{{article.description}}</p>

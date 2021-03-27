@@ -8,10 +8,14 @@ import { IArticle } from '../../interfaces/article.interface';
 })
 export class MdArticleCardComponent implements OnInit {
   @Input() article: IArticle;
+  imageError: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onImgError() {
+    this.imageError = true;
+  }
 }

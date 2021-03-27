@@ -10,11 +10,16 @@ export class ArticleCardComponent implements OnInit {
 
   @Input() article: IArticle;
   @Output() readFullArticleEvent = new EventEmitter<IArticle>();
+  displayFallbackImg: boolean;
 
   constructor() { }
 
   onReadFullArticleClick() {
     this.readFullArticleEvent.emit(this.article);
+  }
+
+  onImageError() {
+    this.displayFallbackImg = true;
   }
 
   ngOnInit(): void {
