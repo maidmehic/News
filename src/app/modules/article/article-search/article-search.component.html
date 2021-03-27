@@ -13,7 +13,7 @@
     <div class="sort-content">
         <mat-form-field appearance="fill">
             <mat-label>Sort by</mat-label>
-            <mat-select (selectionChange)="onSortOptionChanged($event)">
+            <mat-select (selectionChange)="onSortOptionChanged($event)" [value]="requestParams.sortBy">
                 <mat-option *ngFor="let option of articleService.sortOptions" [value]="option.value">
                     {{option.name}}
                 </mat-option>
