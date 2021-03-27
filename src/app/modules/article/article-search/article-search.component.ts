@@ -20,6 +20,7 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
 
   displayLoader: boolean;
   articles: IArticleWrapper;
+  searchTerm: string;
 
   constructor(private store: Store<AppState>, private router: Router) { }
 
@@ -29,6 +30,7 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
         this.displayLoader = res.isLoading;
         this.requestParams = { ...res.requestParams };
         this.articles = res.articles;
+        this.searchTerm = this.requestParams.q;
       }
     )
   }
@@ -36,6 +38,15 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
   onReadFullArticleClick(article: IArticle) {
     this.store.dispatch(ArticleActions.selectArticle({ article }));
     this.router.navigate(['article']);
+  }
+
+  onSearchBtnClick() {
+    if (this.searchTerm) {
+      let requestParams: IArticleRequest = {
+        q: this.searchTerm
+      };
+      this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))
+    }
   }
 
   ngOnDestroy(): void {

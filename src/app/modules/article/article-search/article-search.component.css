@@ -1,0 +1,9 @@
+.loader-content {
+    display: flex; 
+    height: 90vh;
+}
+
+.loader-content mat-spinner {
+    margin:0 auto; 
+    align-self: center;
+}
