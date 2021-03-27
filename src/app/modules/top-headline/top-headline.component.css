@@ -8,12 +8,11 @@
     align-self: center;
 }
 
-.load-more-btn {
+.pag-buttons {
     padding-bottom: 20px; 
     margin-top: 20px;
 }
 
-.load-more-btn button {
+.pag-buttons button {
     border-radius: 30px; 
-    width: 100%;
 }

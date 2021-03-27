@@ -50,6 +50,11 @@ export class TopHeadlineComponent implements OnInit {
     this.fetchTopHeadlines();
   }
 
+  onPreviousButtonClick() {
+    this.requestParams.page--;
+    this.fetchTopHeadlines();
+  }
+
   fetchTopHeadlines() {
     this.displayLoader = true;
     this.disableLoadMoreBtn = true;

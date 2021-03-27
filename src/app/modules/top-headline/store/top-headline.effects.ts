@@ -14,10 +14,10 @@ export class TopHeadlineEffects {
             mergeMap(action => {
                 return this.headlineService.getTopHeadlines(action.requestParams).pipe(
                     map(response => {
-                        if (action.requestParams.page > 1)
-                            return TopHeadlineActions.addTopHeadlines({ headlinesToAdd: response })
-                        else
-                            return TopHeadlineActions.fetchTopHeadlinesSuccess({ topHeadlines: response })
+                        // if (action.requestParams.page > 1)
+                        // return TopHeadlineActions.addTopHeadlines({ headlinesToAdd: response })
+                        // else
+                        return TopHeadlineActions.fetchTopHeadlinesSuccess({ topHeadlines: response })
                     }),
                     catchError(error => {
                         return of(TopHeadlineActions.fetchTopHeadlinesFail({ errorMsg: "Error while retrieving top headlines" }));

@@ -5,21 +5,27 @@
 </p>
 
 <div class="container">
-    <div>
+    <div *ngIf="!displayLoader; else loaderContent">
         <div class="card-columns">
             <app-article-card *ngFor="let ar of headlineArticles?.articles" [article]="ar"></app-article-card>
         </div>
 
-        <div *ngIf="!displayLoader" class="row" class="load-more-btn">
-            <div class="col-lg-4 col-sm-6 ml-auto mr-auto">
-                <button [disabled]="disableLoadMoreBtn" mat-raised-button color="primary"
-                    (click)="onLoadMoreButtonClick()">Load more</button>
+        <div class="row" class="pag-buttons">
+            <div class="col" style="display: flex; justify-content: center;">
+                <button *ngIf="requestParams.page > 1" mat-raised-button color="primary"
+                    (click)="onPreviousButtonClick()">Previous</button>
+                <button [disabled]="disableLoadMoreBtn" mat-raised-button color="primary" style="margin-left: 5px;"
+                    (click)="onLoadMoreButtonClick()">
+                    Load more
+                </button>
             </div>
+
         </div>
-
     </div>
 
-    <div *ngIf="displayLoader" class="loader-content">
-        <mat-spinner></mat-spinner>
-    </div>
+    <ng-template #loaderContent>
+        <div *ngIf="displayLoader" class="loader-content">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
 </div>
