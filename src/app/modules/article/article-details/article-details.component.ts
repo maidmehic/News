@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { IArticleRequest } from 'src/app/shared/interfaces/article-request.interface';
 import { IArticle } from 'src/app/shared/interfaces/article.interface';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { AppState } from 'src/app/store/app.reducer';
 import * as ArticleActions from '../store/article.actions';
 
@@ -18,7 +19,7 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
   selectedArticle: IArticle;
   searchTerm: string;
-  constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) { }
+  constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute, private notifService: NotificationService) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('article').subscribe(
@@ -35,6 +36,8 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       };
       this.store.dispatch(ArticleActions.fetchArticles({ requestParams }))
       this.router.navigate(["search"], { relativeTo: this.route });
+    } else {
+      this.notifService.openSnackBar("Please enter a search term.", "Dismiss");
     }
   }
 

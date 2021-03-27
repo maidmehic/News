@@ -1,12 +1,12 @@
 <p>
     <mat-toolbar color="primary">
         <div class="col-sm-3">
-            <span>News Portal</span>
+            <span style="cursor: pointer;" routerLink="/">News Portal</span>
         </div>
         <div class="col-sm-6" style="padding: 0;">
             <div class="input-group">
                 <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search articles..."
-                    aria-label="Search articles..." aria-describedby="basic-addon1" style="border-radius: 10px;">
+                    aria-label="Search articles..." aria-describedby="basic-addon1" style="border-radius: 30px;">
                 <div class="input-group-append">
                     <button (click)="onSearchBtnClick()" mat-icon-button>
                         <mat-icon>search</mat-icon>

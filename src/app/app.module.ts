@@ -10,24 +10,21 @@ import { EffectsModule } from '@ngrx/effects';
 
 import * as fromApp from '../app/store/app.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   exports: [
-    MatSliderModule,
-    MatChipsModule,
     MatButtonModule,
     MatCardModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatIconModule,
-    MatInputModule
+    MatSnackBarModule
   ],
 })
 export class MaterialModule { }
