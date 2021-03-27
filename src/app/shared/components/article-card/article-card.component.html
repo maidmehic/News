@@ -1,24 +1,11 @@
-<!-- <mat-card class="article-card">
-    <mat-card-header>
-        <mat-card-title>{{article.title}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="article.urlToImage">
-    <mat-card-content>
-        <p>
-            {{article.description}}
-        </p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>READ FULL ARTICLE</button>
-    </mat-card-actions>
-</mat-card> -->
 <div class="card">
     <img class="card-img-top" [src]="article.urlToImage" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{article.title}}</h5>
         <p class="card-text">{{article.description}}</p>
         <div style="display: flex; justify-content: center; margin-bottom: -10px;">
-            <button style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" mat-button>READ FULL
+            <button style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" mat-button
+                (click)="onReadFullArticleClick()">READ FULL
                 ARTICLE</button>
         </div>
     </div>

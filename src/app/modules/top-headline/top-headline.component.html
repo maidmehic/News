@@ -7,7 +7,9 @@
 <div class="container">
     <div *ngIf="!displayLoader; else loaderContent">
         <div class="card-columns">
-            <app-article-card *ngFor="let ar of headlineArticles?.articles" [article]="ar"></app-article-card>
+            <app-article-card *ngFor="let ar of headlineArticles?.articles" [article]="ar"
+                (readFullArticleEvent)="onReadFullArticleClick($event)">
+            </app-article-card>
         </div>
 
         <div class="row" class="pag-buttons">

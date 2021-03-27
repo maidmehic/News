@@ -9,6 +9,9 @@ const routes: Routes = [
   },
   {
     path: 'top-headlines', loadChildren: () => import('./modules/top-headline/top-headline.module').then(m => m.TopHeadlineModule)
+  },
+  {
+    path: 'article', loadChildren: () => import('./modules/article/article.module').then(m => m.ArticleModule)
   }
 ];
 

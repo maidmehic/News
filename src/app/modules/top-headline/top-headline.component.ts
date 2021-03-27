@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { IArticleWrapper } from 'src/app/shared/interfaces/article-wrapper.interface';
-import { ITopHeadlineRequest } from 'src/app/shared/interfaces/top-headline-request.interface';
 
+import { IArticleWrapper } from 'src/app/shared/interfaces/article-wrapper.interface';
+import { IArticle } from 'src/app/shared/interfaces/article.interface';
+import { ITopHeadlineRequest } from 'src/app/shared/interfaces/top-headline-request.interface';
 import { AppState } from 'src/app/store/app.reducer';
-import { TopHeadlineService } from './services/top-headline.service';
 import * as TopHeadlineActions from './store/top-headline.actions';
+import * as ArticleActions from '../article/store/article.actions';
 @Component({
   selector: 'app-top-headline',
   templateUrl: './top-headline.component.html',
@@ -18,7 +20,7 @@ export class TopHeadlineComponent implements OnInit {
   headlineArticles: IArticleWrapper;
   disableLoadMoreBtn: boolean;
 
-  constructor(private headlineService: TopHeadlineService, private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.requestParams = {
@@ -53,6 +55,11 @@ export class TopHeadlineComponent implements OnInit {
   onPreviousButtonClick() {
     this.requestParams.page--;
     this.fetchTopHeadlines();
+  }
+
+  onReadFullArticleClick(article: IArticle) {
+    this.store.dispatch(ArticleActions.selectArticle({ article }));
+    this.router.navigate(['article']);
   }
 
   fetchTopHeadlines() {

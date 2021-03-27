@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IArticle } from '../../interfaces/article.interface';
 
 @Component({
@@ -9,10 +9,14 @@ import { IArticle } from '../../interfaces/article.interface';
 export class ArticleCardComponent implements OnInit {
 
   @Input() article: IArticle;
+  @Output() readFullArticleEvent = new EventEmitter<IArticle>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  onReadFullArticleClick() {
+    this.readFullArticleEvent.emit(this.article);
   }
 
+  ngOnInit(): void {
+  }
 }
