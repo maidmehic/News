@@ -3,6 +3,11 @@
         <div class="col-sm-3">
             <span>News Portal</span>
         </div>
+
+        <div class="col-sm-6" style="padding: 0;">
+            <app-search-bar [searchTerm]="requestParams.q" (onSearchEvent)="onSearch($event)"></app-search-bar>
+        </div>
+
     </mat-toolbar>
 </p>
 

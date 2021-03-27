@@ -27,7 +27,8 @@ export class TopHeadlineComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.requestParams = {
-      page: 1
+      page: 1,
+      q: ''
     };
 
     this.disableLoadMoreBtn = false;
@@ -35,7 +36,7 @@ export class TopHeadlineComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('topHeadline').subscribe( //TODO: implement selectors
       res => {
         if (!res.topHeadlines && !res.isLoading) {
-          // this.fetchTopHeadlines();
+          this.fetchTopHeadlines();
         } else {
           this.displayLoader = res.isLoading;
           this.headlineArticles = res.topHeadlines;
@@ -65,6 +66,12 @@ export class TopHeadlineComponent implements OnInit, OnDestroy {
   fetchTopHeadlines() {
     this.disableLoadMoreBtn = true;
     this.store.dispatch(TopHeadlineActions.fetchTopHeadlines({ requestParams: { ...this.requestParams } }));
+  }
+
+  onSearch(term: string) {
+    this.requestParams.q = term;
+    this.requestParams.page = 1;
+    this.fetchTopHeadlines();
   }
 
   ngOnDestroy(): void {

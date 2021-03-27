@@ -26,6 +26,9 @@ export class TopHeadlineService {
       params = params.append(key.toString(), p[key]);
     });
 
+    if (p.q)
+      params = params.delete('country', 'us');
+
     return this.http.get<IArticleWrapper>(`${this.BASE_URL}top-headlines`, { params });
   }
 
