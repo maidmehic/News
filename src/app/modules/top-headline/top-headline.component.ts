@@ -9,6 +9,7 @@ import { ITopHeadlineRequest } from 'src/app/shared/interfaces/top-headline-requ
 import { AppState } from 'src/app/store/app.reducer';
 import * as TopHeadlineActions from './store/top-headline.actions';
 import * as ArticleActions from '../article/store/article.actions';
+
 @Component({
   selector: 'app-top-headline',
   templateUrl: './top-headline.component.html',
@@ -29,21 +30,18 @@ export class TopHeadlineComponent implements OnInit, OnDestroy {
       page: 1
     };
 
-    this.displayLoader = false;
     this.disableLoadMoreBtn = false;
 
     this.subscription = this.store.select('topHeadline').subscribe( //TODO: implement selectors
       res => {
-        if (!res.topHeadlines && !res.errorMsg) {
-          this.fetchTopHeadlines();
-        } else if (res.errorMsg) {
-          this.displayLoader = false;
-          this.disableLoadMoreBtn = true;
-        }
-        else {
+        if (!res.topHeadlines && !res.isLoading) {
+          // this.fetchTopHeadlines();
+        } else {
+          this.displayLoader = res.isLoading;
           this.headlineArticles = res.topHeadlines;
-          this.displayLoader = false;
-          this.disableLoadMoreBtn = res.topHeadlines.totalResults < 20;
+          this.requestParams = { ...res.requestParams };
+          if (res.topHeadlines)
+            this.disableLoadMoreBtn = res.topHeadlines.totalResults < 20;
         }
       }
     )
@@ -65,7 +63,6 @@ export class TopHeadlineComponent implements OnInit, OnDestroy {
   }
 
   fetchTopHeadlines() {
-    this.displayLoader = true;
     this.disableLoadMoreBtn = true;
     this.store.dispatch(TopHeadlineActions.fetchTopHeadlines({ requestParams: { ...this.requestParams } }));
   }
