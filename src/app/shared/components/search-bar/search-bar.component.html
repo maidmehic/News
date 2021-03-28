@@ -1,6 +1,6 @@
 <div class="input-group">
-    <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search articles..."
-        aria-label="Search articles..." aria-describedby="basic-addon1" style="border-radius: 30px;">
+    <input type="text" [(ngModel)]="searchTerm" class="form-control" [placeholder]="placeholder" aria-label="Search..."
+        aria-describedby="basic-addon1" style="border-radius: 30px;">
     <div class="input-group-append">
         <button (click)="onSearchBtnClick()" mat-icon-button>
             <mat-icon>search</mat-icon>
